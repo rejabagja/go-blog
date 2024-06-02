@@ -18,7 +18,7 @@ class Post extends Model
     }
 
     // set foreign key dengan tabel user
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

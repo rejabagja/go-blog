@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,10 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']); // route mode
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show']); // route model binding
+
+Route::get('/authors/{author:username}', function(User $author) {
+    return view('posts', [
+        'title' => 'User Posts',
+        'posts' => $author->posts,
+    ]);
+});
