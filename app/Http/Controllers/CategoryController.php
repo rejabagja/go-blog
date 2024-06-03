@@ -15,10 +15,9 @@ class CategoryController extends Controller
     }
 
     public function show(Category $category) {
-        return view('category', [
-            'title' => $category->name,
-            'posts' => $category->posts,
-            'category' => $category->name,
+        return view('posts', [
+            'title' => "Post By Category : $category->name",
+            'posts' => $category->posts->load(['category', 'author']), // solusi n+1 problem lazy eager loading
         ]);
     }
 }

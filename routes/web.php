@@ -38,7 +38,7 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'show']); 
 
 Route::get('/authors/{author:username}', function(User $author) {
     return view('posts', [
-        'title' => 'User Posts',
-        'posts' => $author->posts,
+        'title' => "Post By Author : $author->name",
+        'posts' => $author->posts->load(['category', 'author']), // solusi n+1 problem lazy eager loading
     ]);
 });
