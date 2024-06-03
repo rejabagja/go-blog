@@ -11,6 +11,7 @@ class Post extends Model
 
     // protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
+    protected $with = ['category', 'author']; // salah satu solusi n+1 problem dengan eager loading
 
     // set foreign key dengan tabel category
     public function category() {

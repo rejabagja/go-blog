@@ -10,6 +10,7 @@ class CategoryController extends Controller
     public function index() {
         return view('categories', [
             'title' => 'Post Categories',
+            "active" => "categories",
             'categories' => Category::all()
         ]);
     }
@@ -17,6 +18,7 @@ class CategoryController extends Controller
     public function show(Category $category) {
         return view('posts', [
             'title' => "Post By Category : $category->name",
+            "active" => "categories",
             'posts' => $category->posts->load(['category', 'author']), // solusi n+1 problem lazy eager loading
         ]);
     }
