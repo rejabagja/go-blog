@@ -18,9 +18,6 @@
                 <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none btn btn-primary">Read more</a>
             </div>
         </div>
-    @else
-        <p class="text-center fs-4">No post found.</p>
-    @endif
     
     {{-- list of article blog post --}}
     <div class="container">
@@ -45,4 +42,8 @@
             @endforeach
         </div>
     </div>
+
+    @else
+        <p class="text-center fs-4">No post found.</p>
+    @endif
 @endsection
