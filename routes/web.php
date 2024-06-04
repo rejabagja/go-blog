@@ -36,12 +36,3 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']); // route model binding
 
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show']); // route model binding
-
-Route::get('/authors/{author:username}', function(User $author) {
-    return view('posts', [
-        'title' => "Post By Author : $author->name",
-        'active' => "posts",
-        'posts' => $author->posts->load(['category', 'author']), // solusi n+1 problem lazy eager loading
-    ]);
-});

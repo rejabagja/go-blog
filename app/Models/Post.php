@@ -13,6 +13,31 @@ class Post extends Model
     protected $guarded = ['id'];
     protected $with = ['category', 'author']; // salah satu solusi n+1 problem dengan eager loading
 
+    // method filtering by search keyword
+    public function scopeFilter($query, array $filters) {
+        // variabel $query mewakili setiap instance objek eloquent yang dilakukan filtering
+        // "??" -> null coalescing operator; method when bekerja ketika arg1 true maka jalankan callback arg2
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+        });
+        
+        $query->when($filters['category'] ?? false, function($query, $category) {
+            return $query->whereHas('category', function($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function($query, $author) {
+            return $query->whereHas('author', function($query) use ($author) {
+                $query->where('username', $author);
+            });
+        });
+
+        
+    }
+
+
     // set foreign key dengan tabel category
     public function category() {
         return $this->belongsTo(Category::class);
