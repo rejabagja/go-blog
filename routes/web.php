@@ -39,5 +39,7 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']); // route mode
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/login', [LoginController::class, 'create']);
+
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
