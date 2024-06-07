@@ -9,6 +9,16 @@ class Post extends Model
 {
     use HasFactory;
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
     protected $with = ['category', 'author']; // salah satu solusi n+1 problem dengan eager loading
