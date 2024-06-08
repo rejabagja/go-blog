@@ -4,21 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use HasFactory;
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
+    use HasFactory, Sluggable;
+    
     // protected $fillable = ['title', 'excerpt', 'body'];
     protected $guarded = ['id'];
     protected $with = ['category', 'author']; // salah satu solusi n+1 problem dengan eager loading
@@ -47,7 +38,6 @@ class Post extends Model
         
     }
 
-
     // set foreign key dengan tabel category
     public function category() {
         return $this->belongsTo(Category::class);
@@ -56,5 +46,29 @@ class Post extends Model
     // set foreign key dengan tabel user
     public function author() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
