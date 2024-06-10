@@ -15,7 +15,7 @@
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure want to delete?')"><span data-feather="x-circle"></span> Delete</button>
                 </form>
 
-                <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" alt="{{ $post->category->name }}"
+                <img src="https://picsum.photos/seed/{{ $post->category->name }}/1200/400" alt="{{ $post->category->name }}"
                     class="img-fluid mt-3">
 
                 <article class="my-3 fs-6">
