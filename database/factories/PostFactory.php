@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'body' => collect($this->faker->paragraphs(mt_rand(5,10)))
                             ->map(fn($p) => "<p>$p</p>")
                             ->implode(''), // faker->paragraphs mengembalikan array of paragraph. supaya data yang masuk ke DB memiliki tag p, maka dilakukan mapping melalui helper collect. metode implode berfungsi melakukan join antar item array dengan delimiter tertentu.
-            'user_id' => mt_rand(1,3),
+            'user_id' => mt_rand(1,4),
             'category_id' => mt_rand(1,3),
         ];
     }
