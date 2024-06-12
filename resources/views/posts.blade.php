@@ -25,9 +25,9 @@
         {{-- hero latest article blog post --}}
         <div class="card mb-3 shadow-sm">
             @if ($posts[0]->image)
-                <div style="max-height: 400px; overflow:hidden;">
-                    <img src="{{ asset('storage/' . $posts[0]->image) }}" style="width: 100%; height:100%;"
-                        alt="{{ $posts[0]->category->name }}" class="img-fluid">
+                <div style="max-height: 350px; overflow:hidden;">
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}"
+                        alt="{{ $posts[0]->category->name }}" class="card-img-top img-fluid">
                 </div>
             @else
                 <img src="https://picsum.photos/seed/{{ $posts[0]->category->name }}/1200/400" class="card-img-top"
@@ -57,14 +57,14 @@
                 @foreach ($posts->skip(1) as $post)
                     <div class="col-md-4 mb-3">
                         <div class="card shadow-sm">
-                            <div class="position-absolute px-3 py-2" style="background-color:rgba(0,0,0,.7);">
+                            <div class="position-absolute px-3 py-2 rounded" style="background-color:rgba(0,0,0,.7);">
                                 <a href="/posts?category={{ $post->category->slug }}"
                                     class="text-decoration-none text-white">{{ $post->category->name }}</a>
                             </div>
 
                             @if ($post->image)
-                                <img src="{{ asset('storage/' . $post->image) }}" style="width: 100%; height:100%;"
-                                    alt="{{ $post->category->name }}" class="img-fluid">
+                                <img src="{{ asset('storage/' . $post->image) }}" style=""
+                                    alt="{{ $post->category->name }}" class="card-img-top">
                             @else
                                 <img src="https://picsum.photos/seed/{{ $post->category->name }}/500/400"
                                     class="card-img-top"alt="{{ $post->category->name }}">

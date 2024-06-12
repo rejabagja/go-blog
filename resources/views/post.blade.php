@@ -9,14 +9,14 @@
                 <p>By. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p>
 
                 @if ($post->image)
-                    <div style="max-height: 400px; overflow:hidden;">
-                        <img src="{{ asset('storage/' . $post->image) }}" style="width: 100%; height:100%;" alt="{{ $post->category->name }}" class="img-fluid">
+                    <div style="max-height: 350px; overflow:hidden;">
+                        <img src="{{ asset('storage/' . $post->image) }}" style="width: 100%" alt="{{ $post->category->name }}" class="img-fluid">
                     </div>
                 @else
                     <img src="https://picsum.photos/seed/{{ $post->category->name }}/1200/400" alt="{{ $post->category->name }}" class="img-fluid">
                 @endif
 
-                <article class="my-3 fs-5">
+                <article class="my-3">
                     {!! $post->body !!}
                 </article>
 
